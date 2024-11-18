@@ -13,6 +13,20 @@ else
 		include $(AUDIO_ROOT)/config/lahainaauto.conf
 		INCS    +=  -include $(AUDIO_ROOT)/config/lahainaautoconf.h
 	endif
+	ifeq ($(CONFIG_ARCH_LAHAINA), y)
+		include $(AUDIO_ROOT)/config/lahainaauto.conf
+		INCS    +=  -include $(AUDIO_ROOT)/config/lahainaautoconf.h
+	endif
+	ifeq ($(CONFIG_MACH_XIAOMI_REDWOOD), y)
+		include $(AUDIO_ROOT)/config/redwoodaudio.conf
+		export
+		INCS    +=  -include $(AUDIO_ROOT)/config/redwoodaudioconf.h
+	endif
+	ifeq ($(CONFIG_MACH_XIAOMI_LISA), y)
+		include $(AUDIO_ROOT)/config/lisaaudio.conf
+		export
+		INCS    +=  -include $(AUDIO_ROOT)/config/lisaaudioconf.h
+	endif
 endif
 
 ############ UAPI ############
@@ -44,6 +58,7 @@ CDEFINES +=	-DANI_LITTLE_BYTE_ENDIAN \
 		-DANI_COMPILER_TYPE_GCC \
 		-DANI_OS_TYPE_ANDROID=6 \
 		-DPTT_SOCK_SVC_ENABLE \
+		-DTFA_NON_DSP_SOLUTION \
 		-Wall\
 		-Werror\
 		-D__linux__
